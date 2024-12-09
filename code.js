@@ -2,6 +2,7 @@ function mergesort(array) {
     if (array.length < 2){
         return array;
     }
+    array.map(function(){
         for (let size = 1; size <=array.length - 1; size = 2 * size) {
             for (let left = 0; left < array.length - 1; left += 2 * size){
                let mid = Math.min(left + size - 1, array.length - 1);
@@ -9,6 +10,7 @@ function mergesort(array) {
                 merge(array, left, mid, right)
             }
         }    
+    }
     
     return array;
 }
