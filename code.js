@@ -6,15 +6,22 @@ function parallelMergesort(array) {
     
         for (let size = 1; size < arrsize - 1; size = 2 * size) {
             array = array
-                .map ((_,i) => {
-                let left = i * 2 * size;
-                if (left >= arrsize) return null;
-                let mid = Math.min(left + size - 1, arrsize - 1);
-                let right = Math.min(left + 2 * size - 1, arrsize - 1);
-                return merge(array.slice(left, mid + 1), array.slice(mid + 1, right + 1));
-            })
-                .filter(x => x !== null); 
-            array = array.reduce((acc, x) => acc.concat(x), []);
+                .reduce((acc, _, i) => {
+                let leftStart = i * 2 * size;
+                let rightStart = leftStart + size;
+
+                if (leftStart >= arrsize) {
+                    // No more merges left, just push the remaining values
+                    acc.push(array.slice(leftStart));
+                } else {
+                    let leftEnd = Math.min(leftStart + size, arrsize);
+                    let rightEnd = Math.min(rightStart + size, arrsize);
+                    acc.push(merge(array.slice(leftStart, leftEnd), array.slice(leftEnd, rightEnd)));
+                }
+
+                return acc;
+            }, [])
+            .reduce((acc, chunk) => acc.concat(chunk), []);
         }  
     return array;
 }
