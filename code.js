@@ -6,7 +6,7 @@ function mergesort(array) {
         for (let size = 1; size <=array.length - 1; size = 2 * size) {
             array = array.map ((_,i) => {
                 let left = i * 2 * size;
-                if (left >= n) return null;
+                if (left >= array.length) return null;
                 let mid = Math.min(left + size - 1, array.length - 1);
                 let right = Math.min(left + 2 * size - 1, array.length - 1);
                 return merge(array, left, mid, right);
