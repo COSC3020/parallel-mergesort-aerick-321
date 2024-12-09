@@ -21,16 +21,16 @@ function merge(subarr, left, mid, right){
     let i = left, j = mid + 1;
 
     while (i <= mid && j <= right) {
-        if (array[i] <= array[j]) {
-            temp.push(array[i++]);
+        if (subarr[i] <= subarr[j]) {
+            temp.push(subarr[i++]);
         } else {
-            temp.push(array[j++]);
+            temp.push(subarr[j++]);
         }
     }
 
-    while (i <= mid) temp.push(array[i++]);
-    while (j <= right) temp.push(array[j++]);
+    while (i <= mid) temp.push(subarr[i++]);
+    while (j <= right) temp.push(subarr[j++]);
     for (let k = 0; k < temp.length; k++) {
-        array[left + k] = temp[k];
+        subarr[left + k] = temp[k];
     }
 }
