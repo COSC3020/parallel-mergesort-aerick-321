@@ -11,7 +11,7 @@ function parallelMergesort(array) {
                 if (left >= arrsize) return null;
                 let mid = Math.min(left + size - 1, arrsize - 1);
                 let right = Math.min(left + 2 * size - 1, arrsize - 1);
-                return merge(array, left, mid, right);
+                return merge(array.slice(left, mid + 1), array.slice(mid + 1, right + 1));
             })
                 .filter(x => x !== null); 
             array = array.reduce((acc, chunk) => acc.concat(chunk), []);
