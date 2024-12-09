@@ -1,11 +1,11 @@
 function parallelMergesort(array) {
-   if (arr.length <= 1) {
-        return Promise.resolve(arr);
+   if (array.length <= 1) {
+        return Promise.resolve(array);
     }
 
-    const mid = Math.floor(arr.length / 2);
-    const left = arr.slice(0, mid);
-    const right = arr.slice(mid);
+    const mid = Math.floor(array.length / 2);
+    const left = array.slice(0, mid);
+    const right = array.slice(mid);
 
     return Promise.all([
         parallelMergeSort(left),
