@@ -3,11 +3,8 @@ const jsc = require('jsverify');
 
 eval(fs.readFileSync('code.js')+'');
 
-const testParallelSort = jsc.forall("array nat", function(arr) {
-    var original = JSON.parse(JSON.stringify(arr)); // Deep copy for fairness
-    var sortedByParallel = parallelMergesort(original); // Parallel version result
-    var sortedByStandard = original.slice().sort((a, b) => a - b); // Native sort
-    return JSON.stringify(sortedByParallel) === JSON.stringify(sortedByStandard);
-}); 
-
-jsc.assert(testParallelSort);
+const propSortsCorrectly = jsc.property("sorts correctly", "array", async (arr) => {
+    const sortedExpected = [...arr].sort((a, b) => a - b);
+    const result = await parallelMergesort(arr);
+    return JSON.stringify(result) === JSON.stringify(sortedExpected);
+});
