@@ -17,7 +17,6 @@ function mergesort(array) {
 
 function merge(subarr, left, mid, right){
     let top = mid +1;
-       subarr.reduce(){
            while(left <= mid && top <= right){
             if (subarr[left] <= subarr[top]){
                left++;
@@ -34,4 +33,3 @@ function merge(subarr, left, mid, right){
             }
         }
     }
-}
