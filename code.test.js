@@ -1,7 +1,5 @@
 const fs = require('fs');
 const jsc = require('jsverify');
-
-// Load the code that contains both mergesort and parallelMergesort
 eval(fs.readFileSync('code.js'));
 
 // Modify test to check parallel merge sort
