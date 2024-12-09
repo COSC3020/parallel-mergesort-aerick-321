@@ -1,29 +1,18 @@
 function parallelMergesort(array) {
-    let arrsize = array.length;
-    if (arrsize < 2){
-        return array;
+   if (arr.length <= 1) {
+        return Promise.resolve(arr);
     }
-    
-        for (let size = 1; size < arrsize - 1; size = 2 * size) {
-            array = array
-                .reduce((acc, _, i) => {
-                let leftStart = i * 2 * size;
-                let rightStart = leftStart + size;
 
-                if (leftStart >= arrsize) {
-                    // No more merges left, just push the remaining values
-                    acc.push(array.slice(leftStart));
-                } else {
-                    let leftEnd = Math.min(leftStart + size, arrsize);
-                    let rightEnd = Math.min(rightStart + size, arrsize);
-                    acc.push(merge(array.slice(leftStart, leftEnd), array.slice(leftEnd, rightEnd)));
-                }
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
 
-                return acc;
-            }, [])
-            .reduce((acc, chunk) => acc.concat(chunk), []);
-        }  
-    return array;
+    return Promise.all([
+        parallelMergeSort(left),
+        parallelMergeSort(right)
+    ]).then(([leftSorted, rightSorted]) => {
+        return merge(leftSorted, rightSorted);
+    });
 }
 
 function merge(left, right) {
