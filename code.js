@@ -14,7 +14,7 @@ function parallelMergesort(array) {
                 return merge(array.slice(left, mid + 1), array.slice(mid + 1, right + 1));
             })
                 .filter(x => x !== null); 
-            array = array.reduce((acc, chunk) => acc.concat(x), []);
+            array = array.reduce((acc, x) => acc.concat(x), []);
         }  
     return array;
 }
