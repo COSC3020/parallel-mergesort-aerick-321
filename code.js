@@ -8,8 +8,8 @@ function parallelMergesort(array) {
     const right = array.slice(mid);
 
     return Promise.all([
-        parallelMergeSort(left),
-        parallelMergeSort(right)
+        parallelMergesort(left),
+        parallelMergesort(right)
     ]).then(([leftSorted, rightSorted]) => {
         return merge(leftSorted, rightSorted);
     });
