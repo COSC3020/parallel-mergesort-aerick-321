@@ -12,7 +12,7 @@ const testSort = jsc.forall("array nat", async function(arr) {
     var a2 = JSON.parse(JSON.stringify(arr));
 
     // Sort using parallel mergesort
-    await parallelMergesort(a1);
+    await parallelmergesort(a1);
 
     // Sort using built-in JavaScript sort
     a2.sort(function(a, b) { return a - b; });
